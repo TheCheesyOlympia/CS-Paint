@@ -11,11 +11,11 @@ void setup(){
   input = new Taskbar();
 }
 
-void keyPressed() {
+void mousePressed() {
   input.press(keyCode);
 }
 
-void keyReleased() {
+void mouseReleased() {
   input.release(keyCode);
 }
 
