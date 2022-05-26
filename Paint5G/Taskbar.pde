@@ -1,10 +1,10 @@
-class Taskbar {
-  static final int P1_LEFT = 0;
-  static final int P1_RIGHT = 1;
+/*class Taskbar {
+  static final int button1 = 0;
+  static final int button2 = 1;
   boolean [] inputs;
 
   public Taskbar() {
-    inputs = new boolean[2];//2 valid buttons
+    inputs = new boolean[10];
   }
 
   boolean isPressed(int code) {
@@ -12,11 +12,10 @@ class Taskbar {
   }
 
   void press(int code) {
-    println(code);
     if(code == 'A')
-      inputs[P1_LEFT] = true;
+      inputs[button1] = true;
     if(code == 'D')
-      inputs[P1_RIGHT] = true;
+      inputs[button2] = true;
   }
   void release(int code) {
     if(code == 'A')
@@ -24,4 +23,4 @@ class Taskbar {
     if(code == 'D')
       inputs[P1_RIGHT] = false;
   }
-}
+}*/

@@ -5,19 +5,19 @@ int brush = 1;
 int line = 2;
 int rect = 3;
 int mode;
-Taskbar input;
+//Taskbar input;
 
 void setup(){
   size(1280,720);
   editable = loadImage("blankCanvas.png");
   save = editable;
   image(save,200,0);
-  input = new Taskbar();
+  //input = new Taskbar();
   mode = click;
 }
 
 void mousePressed() {
-    
+  
 }
 
 void mouseReleased() {
@@ -25,7 +25,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-
+  
 }
 
 void draw() {

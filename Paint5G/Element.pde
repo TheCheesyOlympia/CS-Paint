@@ -1,4 +1,4 @@
-class Element {
+/*class Element {
   String name;
   float x1;
   float y1;
@@ -7,6 +7,6 @@ class Element {
   int mode;
   
   public Element() {
-  
+    
   }
-}
+}*/
