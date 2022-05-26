@@ -1,5 +1,8 @@
 PImage save;
 PImage editable;
+int click = 0;
+int draw = 1;
+int erase = 2;
 int mode;
 Taskbar input;
 
@@ -9,6 +12,7 @@ void setup(){
   save = editable;
   image(save,200,0);
   input = new Taskbar();
+  mode = click;
 }
 
 void mousePressed() {
@@ -20,12 +24,11 @@ void mouseReleased() {
 }
 
 void draw() {
-  background(255);
-
+  if (mode == click);
+  
   //Visualize which keys are being held down...
   if (input.isPressed(Taskbar.P1_LEFT)) {
-    rect(10, 10, 10, 10);
-  }
+    rect(10, 10, 10, 10);  }
   if (input.isPressed(Taskbar.P1_RIGHT)) {
     rect(30, 10, 10, 10);
   }
