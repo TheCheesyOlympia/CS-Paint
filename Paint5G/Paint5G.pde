@@ -29,5 +29,9 @@ void mouseClicked() {
 }
 
 void draw() {
-  
+  if (mousePressed == true) {
+    if (mouseX > 200) {
+      
+    }
+  }
 }
