@@ -1,9 +1,7 @@
 PImage save;
 PImage editable;
 int click = 0;
-int brush = 1;
-int line = 2;
-int rect = 3;
+Brush[] brush sizes;
 int mode;
 //Taskbar input;
 
@@ -20,7 +18,7 @@ void mousePressed() {
   //int loc = (mouseX) + mouseY * width;
   //editable.pixels[loc] = color(0);
   editable.set(mouseX, mouseY, 0);
-  println(loc);
+  //println(loc);
   //editable.updatePixels();
 }
 
