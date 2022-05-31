@@ -1,7 +1,7 @@
 PImage save;
 PImage editable;
 int click = 0;
-Brush[] brushSize;
+Brush[] brushes;
 int mode;
 color Color;
 //Taskbar input;
@@ -14,10 +14,12 @@ void setup(){
   //input = new Taskbar();
   mode = click;
   Color = color(0,0,0);
+  brushes = new Brush[7];
+  brushes[0] = new Brush(new float[5][5]);
 }
 
 void mousePressed() {
-  Brush.applyCanvas(editable, Color);
+  brushes[0].applyCanvas(editable, Color);
 }
 
 void mouseReleased() {
