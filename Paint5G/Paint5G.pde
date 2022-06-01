@@ -19,7 +19,7 @@ void setup(){
 }
 
 void mousePressed() {
-  brushes[0].applyCanvas(editable, Color);
+  brushes[0].apply(editable, mouseX, mouseY, Color);
 }
 
 void mouseReleased() {
@@ -27,7 +27,7 @@ void mouseReleased() {
 }
 
 void mouseDragged() {
-  
+  brushes[0].apply(editable, mouseX, mouseY, Color);
 }
 
 void mouseClicked() {
