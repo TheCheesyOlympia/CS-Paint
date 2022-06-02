@@ -4,7 +4,8 @@ class Button {
   boolean isClickable = false;
   boolean isPressed = false;
   
-  public Button(int setX, int setY, int setH, int setW, String t, int s, int corner) {
+  public Button(int setX, int setY, int setH, int setW, 
+  String t, int s, int corner) {
     x = setX;
     y = setY;
     h = setH;
@@ -16,9 +17,9 @@ class Button {
     c = corner;
   }
   
-  void drawButton(color c) {
+  void drawButton(int r, int g, int b) {
     smooth();
-    fill(c);
+    fill(r, g, b);
     stroke(0);
     rect(x, y, w, h, c);
     fill(0);
@@ -32,14 +33,22 @@ class Button {
       isClickable = true;
       
       //Check if pressed
-      if (mousePressed) {isPressed = true;} 
-      else {isPressed = false;}
+      if (mousePressed) {isPressed = !isPressed;} 
     }
     else {isClickable = false;}
-    
-    if(isClickable) {
-      draw
-    }
+    //shade button
+    if(isPressed) {drawButton(0,224,242); }
+    else if(isClickable) {drawButton(0,242,242); }
+    else{drawButton(255,255,255);}
   }
   
+  boolean isPressed() {
+    return isPressed;
+  }
+  
+  String name
+  
+  void reset() {
+    isPressed = false;
+  }
 }

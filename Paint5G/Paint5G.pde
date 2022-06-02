@@ -6,7 +6,7 @@ PImage save;
 PImage canvas;
 //PImage img;
 ArrayList<Brush> brushes;
-int mode;
+String mode;
 color c;
 ArrayList<Button> buttons;
 //Buttons
@@ -73,7 +73,9 @@ void keyPressed() {
 
 void draw() {
   if (mousePressed == true){
-    
+    for(int i = 0; i < buttons.size(); i++) {
+      buttons.get(i).updateButton();
+    }
   }  
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
