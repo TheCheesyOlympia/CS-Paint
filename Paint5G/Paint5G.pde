@@ -8,20 +8,23 @@ int click = 0;
 Brush[] brushes;
 int mode;
 color c;
-//Taskbar input;
+//Taskbar
+JFrame f;
+JButton b, b1, b2;
+JLabel l;
 
 void setup(){
   frameRate(60);
   size(1080,870);
-  editable = loadImage("blankCanvas.png");
-  save = editable;
+  save = loadImage("blankCanvas.png");
+  editable = save.copy();
   image(editable,0,150);
   //input = new Taskbar();
   mode = click;
   c = color(0,0,0);
   brushes = new Brush[7];
   brushes[0] = new Brush(new float[25][25]);
-  
+
 }
 
 void mousePressed() {
