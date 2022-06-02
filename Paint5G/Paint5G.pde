@@ -5,30 +5,31 @@ import java.awt.*;
 PImage save;
 PImage canvas;
 //PImage img;
-int click = 0;
-Brush[] brushes;
+ArrayList<Brush> brushes;
 int mode;
 color c;
-//Taskbar
+ArrayList<Button> buttons;
+//Buttons
+
 
 void setup(){
   size(1080,870);
-  save = loadImage("redcar.png");
-  canvas = createGraphics(1080,720);
-  arrayCopy(save.pixels, canvas.pixels);
-  mode = click;
+  canvas = loadImage("blankCanvas.png");
+  save = canvas.copy();
   c = color(0,0,0);
-  brushes = new Brush[7];
-  brushes[0] = new Brush(new float[25][25]);
-
+  brushes = new ArrayList<Brush>();
+  buttons = new ArrayList<Button>();
+  brushes.add(new Brush(new float[25][25]));
+  //intialize buttons
+  
 }
 
 void mousePressed() {
-  brushes[0].apply(canvas, mouseX, mouseY - 150, c);
+  brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
 }
 
 void mouseDragged() {
-  brushes[0].apply(canvas, mouseX, mouseY - 150, c);
+  brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
 }
 
 void mouseClicked() {
