@@ -16,13 +16,30 @@ class Button {
     c = corner;
   }
   
-  void drawButton() {
+  void drawButton(color c) {
     smooth();
-    fill(255);
+    fill(c);
     stroke(0);
     rect(x, y, w, h, c);
     fill(0);
     textSize(fontSize);
     text(name, x + w / 2 - (textWidth(name) / 2), y + h - 5);
   }
+  
+  void updateButton() {   
+    //Check if hovering
+    if(mouseX > x && mouseY > y && mouseX < x2 && mouseY < y2) {
+      isClickable = true;
+      
+      //Check if pressed
+      if (mousePressed) {isPressed = true;} 
+      else {isPressed = false;}
+    }
+    else {isClickable = false;}
+    
+    if(isClickable) {
+      draw
+    }
+  }
+  
 }

@@ -44,6 +44,11 @@ void setup(){
   buttons.add(BrushSize = new Button(475, 15, 120, 120, "Size & Tips", 20, 20));
   
   buttons.add(ColorChooser = new Button (645, 15, 120, 80,"Color", 20, 10));
+  
+  buttons.add(Undo = new Button (830, 15, 50, 50, "Undo", 15, 10));
+  buttons.add(Redo = new Button (890, 15, 50, 50, "Redo", 15, 10));
+  
+  buttons.add(Save = new Button (950, 15, 100, 100, "Save", 20, 10));
   //Partitions
   line(132,0,132,150);
   line(620,0,620,150);
@@ -71,7 +76,7 @@ void draw() {
     
   }  
   for(int i = 0; i < buttons.size(); i++) {
-    buttons.get(i).drawButton();
+    buttons.get(i).updateButton();
   }
   image(canvas,0,150);
   
