@@ -114,7 +114,8 @@ void draw() {
     buttons.get(i).updateButton();
   }
   image(canvas,0,150);
-  text(currentMode, 10, 10);
+  //FOR DEBUG ONLY
+  //text(currentMode, 10, 10);
 }
 void mousePressed() {
   if(currentMode.equals("Pencil")) {
