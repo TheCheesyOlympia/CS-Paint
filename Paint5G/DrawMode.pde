@@ -1,0 +1,3 @@
+class DrawMode extends Button {
+
+}

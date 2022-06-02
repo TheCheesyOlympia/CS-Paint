@@ -1,0 +1,3 @@
+class SingleAction extends Button {
+
+}
