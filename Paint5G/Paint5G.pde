@@ -6,9 +6,11 @@ PImage save;
 PImage canvas;
 //PImage img;
 ArrayList<Brush> brushes;
-String mode = "None";
+String currentMode = "None";
+Stack<String> mode = new Stack<String>();
 color c;
 ArrayList<Button> buttons;
+
 //Buttons
 Button Open;
 Button Brushes;
@@ -28,6 +30,8 @@ void setup(){
   canvas = loadImage("blankCanvas.png");
   save = canvas.copy();
   c = color(0,0,0);
+  mode.push("default");
+  //intialize arrays
   brushes = new ArrayList<Brush>();
   buttons = new ArrayList<Button>();
   brushes.add(new Brush(new float[25][25]));
@@ -75,19 +79,22 @@ void draw() {
   if (mousePressed == true){
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
-        mode = buttons.get(i).getButton();
+        mode.push(buttons.get(i).getButton());
       }
     }
   }  
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
+  //update mode
+  currentMode = mode.peek();
   //mode excecution
   if (mode.equals("Color")) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
     buttons.get(7).reset();
+    mode.pop();
   }
   image(canvas,0,150);
-  text(mode, 10, 10);
+  text(currentMode, 10, 10);
 }
