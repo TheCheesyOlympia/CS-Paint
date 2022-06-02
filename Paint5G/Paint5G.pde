@@ -59,19 +59,19 @@ void setup(){
 }
 
 void mousePressed() {
-  if(currentMode.equals("pencil")) {
+  if(currentMode.equals("Pencil")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  if(currentMode.equals("eraser")) {
+  if(currentMode.equals("Eraser")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
   }
 }
 
 void mouseDragged() {
-  if(currentMode.equals("pencil")) {
+  if(currentMode.equals("Pencil")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  if(currentMode.equals("eraser")) {
+  if(currentMode.equals("Eraser")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
   }
 }
@@ -93,17 +93,20 @@ void draw() {
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
         //detoggle brush options
-        if (mode.peek().equals("Pencil")) {
+        if (mode.peek().equals("Pencil") && !buttons.get(i)
+           .getButton().equals("Pencil")) {
           buttons.get(2).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Pencil")) {
+        if (mode.peek().equals("Eraser") && !buttons.get(i)
+           .getButton().equals("Eraser")) {
           buttons.get(3).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Fill")) {
+        if (mode.peek().equals("Fill") && !buttons.get(i)
+           .getButton().equals("Fill")) {
           buttons.get(4).reset();
           mode.pop();
           currentMode = mode.peek();
@@ -117,10 +120,6 @@ void draw() {
       }
     }
   }  
-  //update buttons
-  for(int i = 0; i < buttons.size(); i++) {
-    buttons.get(i).updateButton();
-  }
   //excecute modes that involve popups
   if (currentMode.equals("Color")) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
@@ -129,6 +128,10 @@ void draw() {
     buttons.get(7).reset();
     mode.pop();
     currentMode = mode.peek();
+  }
+  //update buttons
+  for(int i = 0; i < buttons.size(); i++) {
+    buttons.get(i).updateButton();
   }
   image(canvas,0,150);
   text(currentMode, 10, 10);
