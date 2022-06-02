@@ -99,24 +99,27 @@ void draw() {
         if (mode.peek().equals("Pencil") && i < 4 && i != 0)  {
           buttons.get(0).reset();
           mode.pop();
-          currentMode = mode.peek();
+          currentMode = mode.push(buttons.get(i).getButton());
         } 
         if (mode.peek().equals("Eraser") && i < 4 && i != 1) {
           buttons.get(1).reset();
           mode.pop();
-          currentMode = mode.peek();
+          currentMode = mode.push(buttons.get(i).getButton());
         } 
         if (mode.peek().equals("Fill") && i < 4 && i != 2) {
           buttons.get(2).reset();
           mode.pop();
-          currentMode = mode.peek();
+          currentMode = mode.push(buttons.get(i).getButton());
         } 
         if (mode.peek().equals("Picker") && i < 3) {
           buttons.get(3).reset();
           mode.pop();
-          currentMode = mode.peek();
-        } 
-        mode.push(buttons.get(i).getButton());
+          currentMode = mode.push(buttons.get(i).getButton());
+        }
+        //overflow protection
+        if(!mode.peek().equals(buttons.get(i).getButton())) {
+          mode.push(buttons.get(i).getButton());
+        }
       }
     }
   }  
