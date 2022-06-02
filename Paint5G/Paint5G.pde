@@ -59,19 +59,19 @@ void setup(){
 }
 
 void mousePressed() {
-  if(currentMode.equals(pencil)) {
+  if(currentMode.equals("pencil")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  else if(currentMode.equals(eraser)) {
+  if(currentMode.equals("eraser")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
   }
 }
 
 void mouseDragged() {
-  if(currentMode.equals(pencil)) {
+  if(currentMode.equals("pencil")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  else if(currentMode.equals(eraser)) {
+  if(currentMode.equals("eraser")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
   }
 }
@@ -86,24 +86,47 @@ void keyPressed() {
 }
 
 void draw() {
+  //update mode
+  currentMode = mode.peek();
+  //inputs for mouse
   if (mousePressed == true){
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
+        //detoggle brush options
+        if (mode.peek().equals("Pencil")) {
+          buttons.get(2).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
+        if (mode.peek().equals("Pencil")) {
+          buttons.get(3).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
+        if (mode.peek().equals("Fill")) {
+          buttons.get(4).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
+        if (mode.peek().equals("Picker")) {
+          buttons.get(5).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
         mode.push(buttons.get(i).getButton());
       }
     }
   }  
+  //update buttons
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
-  //update mode
-  currentMode = mode.peek();
-  //mode excecution
+  //excecute modes that involve popups
   if (currentMode.equals("Color")) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+    //close popup
     buttons.get(7).reset();
-    //reset mode
     mode.pop();
     currentMode = mode.peek();
   }
