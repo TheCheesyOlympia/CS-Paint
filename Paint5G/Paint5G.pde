@@ -95,15 +95,15 @@ void draw() {
   }  
   //excecute modes that involve popups
   if (currentMode.equals("Color")) {
-    Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-    if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+    //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+    //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
     //close popup
     mode.pop();
     currentMode = mode.peek();
     buttons.get(7).reset();
   }
   if (currentMode.equals("Open")) {
-    selectInput("Select a file to process:", "fileSelected");
+    //selectInput("Select a file to process:", "fileSelected");
     //close popup
     mode.pop();
     currentMode = mode.peek();
@@ -158,8 +158,13 @@ void keyPressed() {
       brushes.set(0, (new Brush(new float[1][1])));
     }
   }
-  //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-  //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+  if(key == 'c') {
+  Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+  if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+  }
+  if(key == 'e') {
+    selectInput("Select a file to process:", "fileSelected");
+  }
 }
 
 void fileSelected(File selection) {
