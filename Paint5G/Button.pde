@@ -22,6 +22,6 @@ class Button {
     rect(x, y, w, h, 5);
     fill(0);
     textSize(fontSize);
-    text(name, x + w / 2 - (textWidth(name) / 2), y + h / 2 + (textAscent() / 2));
+    text(name, x + w / 2 - (textWidth(name) / 2), y + h - 5);
   }
 }

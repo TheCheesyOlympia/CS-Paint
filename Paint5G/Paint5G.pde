@@ -2,26 +2,20 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-PGraphics save;
-PGraphics canvas;
-PImage img;
+PImage save;
+PImage canvas;
+//PImage img;
 int click = 0;
 Brush[] brushes;
 int mode;
 color c;
 //Taskbar
-JFrame f;
-JButton b, b1, b2;
-JLabel l;
 
 void setup(){
   size(1080,870);
-  img = loadImage("redcar.png");
+  save = loadImage("redcar.png");
   canvas = createGraphics(1080,720);
-  arrayCopy(canvas.pixels, save.pixels);
-  canvas.beginDraw();
-  
-  canvas.endDraw();
+  arrayCopy(save.pixels, canvas.pixels);
   mode = click;
   c = color(0,0,0);
   brushes = new Brush[7];
