@@ -6,7 +6,17 @@ public class Brush {
   }
   
   void apply(PImage image, int x, int y, color newColor) {
-    
+    for(int i = 0; i < brush.length; i++) {
+      for(int j = 0; j < brush[0].length; j++) {
+        if(isValid(x + i, y + j, image) == true) {
+          image.set(x + i, y + j, newColor);
+        }
+      }
+    } 
+  }
+  
+  boolean isValid(int x, int y, PImage image) {
+    return(x >= 0 && y >= 0 && x < image.width && y < image.height);
   }
   
   void applyCanvas(PImage image, color fill) {
