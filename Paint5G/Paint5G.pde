@@ -10,7 +10,7 @@ int mode;
 color c;
 ArrayList<Button> buttons;
 //Buttons
-Button Save;
+Button Open;
 Button Brushes;
 Button Pencil;
 Button Eraser;
@@ -18,6 +18,7 @@ Button Fill;
 Button Picker;
 Button BrushSize;
 Button ColorChooser;
+Button Save;
 Button Undo;
 Button Redo;
 
@@ -31,19 +32,21 @@ void setup(){
   buttons = new ArrayList<Button>();
   brushes.add(new Brush(new float[25][25]));
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
-  buttons.add(Save = new Button(15, 15, 120, 100,"Save", 25, 20));
+  buttons.add(Open = new Button(15, 15, 120, 100,"Open", 25, 20));
   
   buttons.add(Brushes = new Button(150, 15, 120, 120, "Brushes", 25, 20));
   
-  buttons.add(Pencil = new Button(300, 15, 25, 150, "Pencil", 15, 5));
-  buttons.add(Eraser = new Button(300, 45, 25, 150, "Eraser", 15, 5));
-  buttons.add(Fill = new Button(300, 75, 25, 150, "Fill", 15, 5));
-  buttons.add(Picker = new Button(300, 105, 25, 150, "Picker", 15, 5));
+  buttons.add(Pencil = new Button(295, 15, 25, 155, "Pencil", 15, 5));
+  buttons.add(Eraser = new Button(295, 45, 25, 155, "Eraser", 15, 5));
+  buttons.add(Fill = new Button(295, 75, 25, 155, "Fill", 15, 5));
+  buttons.add(Picker = new Button(295, 105, 25, 155, "Picker", 15, 5));
   
-  buttons.add(ColorChooser = new Button (500, 15, 120, 80,"Color", 20, 10));
+  buttons.add(BrushSize = new Button(475, 15, 120, 120, "Size & Tips", 20, 20));
+  
+  buttons.add(ColorChooser = new Button (645, 15, 120, 80,"Color", 20, 10));
   //Partitions
   line(132,0,132,150);
-  line(475,0,475,150);
+  line(620,0,620,150);
 }
 
 void mousePressed() {
@@ -59,8 +62,8 @@ void mouseClicked() {
 }
 
 void keyPressed() {
-  Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-  if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+  //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+  //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
 }
 
 void draw() {
