@@ -11,12 +11,13 @@ color c;
 ArrayList<Button> buttons;
 //Buttons
 Button Save;
-Button SelectColor;
 Button Pencil;
 Button Eraser;
 Button Fill;
-Button BrushSize;
+Button Picker;
 Button Brushes;
+Button BrushSize;
+Button SelectColor;
 Button Undo;
 Button Redo;
 
@@ -30,7 +31,8 @@ void setup(){
   buttons = new ArrayList<Button>();
   brushes.add(new Brush(new float[25][25]));
   //intialize buttons
-  Save = new Button(15, 15, 120, 80,"Save", 25);
+  buttons.add(Save = new Button(15, 15, 120, 80,"Save", 25, 10));
+  buttons.add(SelectColor = new Button(
 }
 
 void mousePressed() {
@@ -54,6 +56,9 @@ void draw() {
   if (mousePressed == true){
     
   }  
+  for(int i = 0; i < buttons.size(); i++) {
+    buttons.get(i).drawButton();
+  }
   image(canvas,0,150);
   
 }
