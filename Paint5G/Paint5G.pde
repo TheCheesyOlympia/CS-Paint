@@ -1,4 +1,3 @@
-import controlP5.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +11,7 @@ color c;
 //Taskbar input;
 
 void setup(){
+  frameRate(60);
   size(1080,870);
   editable = loadImage("blankCanvas.png");
   save = editable;
@@ -21,17 +21,11 @@ void setup(){
   c = color(0,0,0);
   brushes = new Brush[7];
   brushes[0] = new Brush(new float[25][25]);
-  fill(0, 80);
-  rect(50, 90, 275, 80);
   
 }
 
 void mousePressed() {
   brushes[0].apply(editable, mouseX, mouseY - 150, c);
-}
-
-void mouseReleased() {
-  
 }
 
 void mouseDragged() {
@@ -42,13 +36,15 @@ void mouseClicked() {
   
 }
 
+void keyPressed() {
+  Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+  if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+}
+
 void draw() {
   if (mousePressed == true){
-    image(editable,0,150);
+    
   }  
-  javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
+  image(editable,0,150);
+  
 }
