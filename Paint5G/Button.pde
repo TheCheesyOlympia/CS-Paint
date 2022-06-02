@@ -46,7 +46,9 @@ class Button {
     return isPressed;
   }
   
-  String name
+  String getButton() {
+    return name;
+  }
   
   void reset() {
     isPressed = false;

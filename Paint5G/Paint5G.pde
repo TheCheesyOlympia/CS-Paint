@@ -6,7 +6,7 @@ PImage save;
 PImage canvas;
 //PImage img;
 ArrayList<Brush> brushes;
-String mode;
+String mode = "None";
 color c;
 ArrayList<Button> buttons;
 //Buttons
@@ -75,6 +75,9 @@ void draw() {
   if (mousePressed == true){
     for(int i = 0; i < buttons.size(); i++) {
       buttons.get(i).updateButton();
+      if(buttons.get(i).isPressed()) {
+        mode = buttons.get(i).getButton();
+      }
     }
   }  
   for(int i = 0; i < buttons.size(); i++) {
