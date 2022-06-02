@@ -36,24 +36,23 @@ void setup(){
   buttons = new ArrayList<Button>();
   brushes.add(new Brush(new float[25][25]));
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
-  buttons.add(Open = new Button(15, 15, 120, 100,"Open", 25, 20));
   
-  buttons.add(Brushes = new Button(150, 15, 120, 120, "Brushes", 25, 20));
-  
+  //draw modes (cannot be selected at the same time)
   buttons.add(Pencil = new Button(295, 15, 25, 155, "Pencil", 15, 5));
   buttons.add(Eraser = new Button(295, 45, 25, 155, "Eraser", 15, 5));
   buttons.add(Fill = new Button(295, 75, 25, 155, "Fill", 15, 5));
   buttons.add(Picker = new Button(295, 105, 25, 155, "Picker", 15, 5));
-  
+  //popups
+  buttons.add(Open = new Button(15, 15, 120, 100,"Open", 25, 20));
+  buttons.add(Brushes = new Button(150, 15, 120, 120, "Brushes", 25, 20));
   buttons.add(BrushSize = new Button(475, 15, 120, 120, "Size & Tips", 20, 20));
-  
   buttons.add(ColorChooser = new Button (645, 15, 120, 80,"Color", 20, 10));
-  
+  //single actions
   buttons.add(Undo = new Button (830, 15, 50, 50, "Undo", 15, 10));
   buttons.add(Redo = new Button (890, 15, 50, 50, "Redo", 15, 10));
-  
   buttons.add(Save = new Button (950, 15, 100, 100, "Save", 20, 10));
-  //Partitions
+  
+  //lines for organization's sake
   line(132,0,132,150);
   line(620,0,620,150);
 }
@@ -93,26 +92,23 @@ void draw() {
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
         //detoggle brush options
-        if (mode.peek().equals("Pencil") && !buttons.get(i)
-           .getButton().equals("Pencil")) {
+        if (mode.peek().equals("Pencil") && i < 4)  {
+          buttons.get(0).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
+        if (mode.peek().equals("Eraser") && i < 4) {
+          buttons.get(1).reset();
+          mode.pop();
+          currentMode = mode.peek();
+        } 
+        if (mode.peek().equals("Fill") && i < 4) {
           buttons.get(2).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Eraser") && !buttons.get(i)
-           .getButton().equals("Eraser")) {
+        if (mode.peek().equals("Picker") && i < 4) {
           buttons.get(3).reset();
-          mode.pop();
-          currentMode = mode.peek();
-        } 
-        if (mode.peek().equals("Fill") && !buttons.get(i)
-           .getButton().equals("Fill")) {
-          buttons.get(4).reset();
-          mode.pop();
-          currentMode = mode.peek();
-        } 
-        if (mode.peek().equals("Picker")) {
-          buttons.get(5).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
