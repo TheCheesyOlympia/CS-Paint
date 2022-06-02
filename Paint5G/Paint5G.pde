@@ -1,13 +1,14 @@
-import java.awt.*;
+import controlP5.*;
 import java.util.*;
 import javax.swing.*;
+import java.awt.*;
 
 PImage save;
 PImage editable;
 int click = 0;
 Brush[] brushes;
 int mode;
-color Color;
+color c;
 //Taskbar input;
 
 void setup(){
@@ -17,14 +18,16 @@ void setup(){
   image(editable,0,150);
   //input = new Taskbar();
   mode = click;
-  Color = color(0,0,0);
+  c = color(0,0,0);
   brushes = new Brush[7];
   brushes[0] = new Brush(new float[25][25]);
-  ColorChooser.openColorChooser();
+  fill(0, 80);
+  rect(50, 90, 275, 80);
+  
 }
 
 void mousePressed() {
-  brushes[0].apply(editable, mouseX, mouseY - 150, Color);
+  brushes[0].apply(editable, mouseX, mouseY - 150, c);
 }
 
 void mouseReleased() {
@@ -32,18 +35,20 @@ void mouseReleased() {
 }
 
 void mouseDragged() {
-  brushes[0].apply(editable, mouseX, mousY - 150, Color);
+  brushes[0].apply(editable, mouseX, mouseY - 150, c);
 }
 
 void mouseClicked() {
   
 }
 
-
-
 void draw() {
   if (mousePressed == true){
     image(editable,0,150);
-  }
-  
+  }  
+  javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
 }
