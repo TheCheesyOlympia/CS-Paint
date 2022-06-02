@@ -62,7 +62,9 @@ void mousePressed() {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("Eraser")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
 
@@ -71,7 +73,9 @@ void mouseDragged() {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("Eraser")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
 
@@ -88,26 +92,26 @@ void draw() {
   //update mode
   currentMode = mode.peek();
   //inputs for mouse
-  if (mousePressed == true){
+  if (mousePressed == true && mouseY <= 150){
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
-        //detoggle brush options
-        if (mode.peek().equals("Pencil") && i < 4)  {
+        //detoggle brush options if another brush option is selected
+        if (mode.peek().equals("Pencil") && i < 4 && i != 0)  {
           buttons.get(0).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Eraser") && i < 4) {
+        if (mode.peek().equals("Eraser") && i < 4 && i != 1) {
           buttons.get(1).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Fill") && i < 4) {
+        if (mode.peek().equals("Fill") && i < 4 && i != 2) {
           buttons.get(2).reset();
           mode.pop();
           currentMode = mode.peek();
         } 
-        if (mode.peek().equals("Picker") && i < 4) {
+        if (mode.peek().equals("Picker") && i < 3) {
           buttons.get(3).reset();
           mode.pop();
           currentMode = mode.peek();
@@ -121,9 +125,9 @@ void draw() {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
     //close popup
-    buttons.get(7).reset();
     mode.pop();
     currentMode = mode.peek();
+    buttons.get(7).reset();
   }
   //update buttons
   for(int i = 0; i < buttons.size(); i++) {
