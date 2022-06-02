@@ -11,7 +11,8 @@ Stack<String> mode = new Stack<String>();
 color c;
 ArrayList<Button> buttons;
 
-//Buttons
+//Buttons (NOTE TO SELF: ALL BUTTONS SHOULD HAVE THEIR
+//OWN SUBCLASSES OF BUTTON FOR EASIER IMPLEMENTATION)
 Button Open;
 Button Brushes;
 Button Pencil;
@@ -55,37 +56,6 @@ void setup(){
   //lines for organization's sake
   line(132,0,132,150);
   line(620,0,620,150);
-}
-
-void mousePressed() {
-  if(currentMode.equals("Pencil")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
-  }
-  if(currentMode.equals("Eraser")) {
-    //eraser sets to white for now, proper erase function at a later date
-    color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
-  }
-}
-
-void mouseDragged() {
-  if(currentMode.equals("Pencil")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
-  }
-  if(currentMode.equals("Eraser")) {
-    //eraser sets to white for now, proper erase function at a later date
-    color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
-  }
-}
-
-void mouseClicked() {
-  
-}
-
-void keyPressed() {
-  //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-  //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
 }
 
 void draw() {
@@ -132,10 +102,69 @@ void draw() {
     currentMode = mode.peek();
     buttons.get(7).reset();
   }
+  if (currentMode.equals("Open")) {
+    selectInput("Select a file to process:", "fileSelected");
+    //close popup
+    mode.pop();
+    currentMode = mode.peek();
+    buttons.get(4).reset();
+  }
   //update buttons
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
   image(canvas,0,150);
   text(currentMode, 10, 10);
+}
+void mousePressed() {
+  if(currentMode.equals("Pencil")) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  }
+  if(currentMode.equals("Eraser")) {
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+  }
+}
+
+void mouseDragged() {
+  if(currentMode.equals("Pencil")) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  }
+  if(currentMode.equals("Eraser")) {
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+  }
+}
+
+void mouseClicked() {
+  
+}
+
+void keyPressed() {
+  //temporary brush size adjustment with keybind (DEMO ONLY)
+  int oldSize = brushes.get(0).getSize();
+  if(keyCode == UP) {
+    if(oldSize <= 50) {
+      brushes.set(0, (new Brush(new float[oldSize + 5][oldSize + 5])));
+    }
+  }
+  if(keyCode == DOWN) {
+    if(oldSize > 5) {
+      brushes.set(0, (new Brush(new float[oldSize - 5][oldSize - 5])));
+    }
+    else {
+      brushes.set(0, (new Brush(new float[1][1])));
+    }
+  }
+  //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+  //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+}
+
+void fileSelected(File selection) {
+  if (selection != null) {
+    save = canvas.copy();
+    canvas = loadImage(selection.getAbsolutePath());
+  }
 }

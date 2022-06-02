@@ -26,4 +26,8 @@ public class Brush {
       } 
     }
   }
+  
+  int getSize()   {
+    return brush.length;
+  }
 }
