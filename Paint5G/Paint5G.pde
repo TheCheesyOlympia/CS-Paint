@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-//PGraphics save;
+PGraphics save;
 PGraphics canvas;
 PImage img;
 int click = 0;
@@ -15,12 +15,13 @@ JButton b, b1, b2;
 JLabel l;
 
 void setup(){
-  frameRate(60);
   size(1080,870);
-  canvas = createGraphics(1080,720);
   img = loadImage("redcar.png");
-  //save = canvas.copy();
-  image(canvas,0,150);
+  canvas = createGraphics(1080,720);
+  arrayCopy(canvas.pixels, save.pixels);
+  canvas.beginDraw();
+  
+  canvas.endDraw();
   mode = click;
   c = color(0,0,0);
   brushes = new Brush[7];
