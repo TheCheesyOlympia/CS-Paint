@@ -37,9 +37,9 @@ class Button {
     }
     else {isClickable = false;}
     //shade button
-    if(isPressed) {drawButton(0,224,242);}
-    else if(isClickable) {drawButton(0,242,242);}
-    else{drawButton(255,255,255);}
+    if(isPressed) {drawButton(0,224,242); return;}
+    if(isClickable) {drawButton(0,242,242); return;}
+    {drawButton(255,255,255);}
   }
   
   boolean isPressed() {
