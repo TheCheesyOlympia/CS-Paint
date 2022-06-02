@@ -59,11 +59,21 @@ void setup(){
 }
 
 void mousePressed() {
-  brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  if(currentMode.equals(pencil)) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  }
+  else if(currentMode.equals(eraser)) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
+  }
 }
 
 void mouseDragged() {
-  brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  if(currentMode.equals(pencil)) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+  }
+  else if(currentMode.equals(eraser)) {
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, 255);
+  }
 }
 
 void mouseClicked() {
@@ -89,11 +99,13 @@ void draw() {
   //update mode
   currentMode = mode.peek();
   //mode excecution
-  if (mode.equals("Color")) {
+  if (currentMode.equals("Color")) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
     buttons.get(7).reset();
+    //reset mode
     mode.pop();
+    currentMode = mode.peek();
   }
   image(canvas,0,150);
   text(currentMode, 10, 10);
