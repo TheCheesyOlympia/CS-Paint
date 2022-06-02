@@ -2,8 +2,9 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-PImage save;
-PImage editable;
+//PGraphics save;
+PGraphics canvas;
+PImage img;
 int click = 0;
 Brush[] brushes;
 int mode;
@@ -16,10 +17,10 @@ JLabel l;
 void setup(){
   frameRate(60);
   size(1080,870);
-  save = loadImage("blankCanvas.png");
-  editable = save.copy();
-  image(editable,0,150);
-  //input = new Taskbar();
+  canvas = createGraphics(1080,720);
+  img = loadImage("redcar.png");
+  //save = canvas.copy();
+  image(canvas,0,150);
   mode = click;
   c = color(0,0,0);
   brushes = new Brush[7];
@@ -28,11 +29,11 @@ void setup(){
 }
 
 void mousePressed() {
-  brushes[0].apply(editable, mouseX, mouseY - 150, c);
+  brushes[0].apply(canvas, mouseX, mouseY - 150, c);
 }
 
 void mouseDragged() {
-  brushes[0].apply(editable, mouseX, mouseY - 150, c);
+  brushes[0].apply(canvas, mouseX, mouseY - 150, c);
 }
 
 void mouseClicked() {
@@ -48,6 +49,6 @@ void draw() {
   if (mousePressed == true){
     
   }  
-  image(editable,0,150);
+  image(canvas,0,150);
   
 }
