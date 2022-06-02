@@ -74,7 +74,6 @@ void keyPressed() {
 void draw() {
   if (mousePressed == true){
     for(int i = 0; i < buttons.size(); i++) {
-      buttons.get(i).updateButton();
       if(buttons.get(i).isPressed()) {
         mode = buttons.get(i).getButton();
       }
@@ -83,6 +82,12 @@ void draw() {
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
+  //mode excecution
+  if (mode.equals("Color")) {
+    Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+    if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+    buttons.get(7).reset();
+  }
   image(canvas,0,150);
-  
+  text(mode, 10, 10);
 }
