@@ -1,7 +1,7 @@
-public class Brush {
+public class KernelBrush {
   float[][]brush;
 
-  public Brush(float[][]size) {
+  public KernelBrush(float[][]size) {
     brush = size;
   }
   

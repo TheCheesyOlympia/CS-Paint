@@ -5,7 +5,7 @@ import java.awt.*;
 PImage save;
 PImage canvas;
 //PImage img;
-ArrayList<Brush> brushes;
+ArrayList<KernelBrush> brushes;
 String currentMode = "None";
 Stack<String> mode = new Stack<String>();
 color c;
@@ -33,9 +33,9 @@ void setup(){
   c = color(0,0,0);
   mode.push("default");
   //intialize arrays
-  brushes = new ArrayList<Brush>();
+  brushes = new ArrayList<KernelBrush>();
   buttons = new ArrayList<Button>();
-  brushes.add(new Brush(new float[25][25]));
+  brushes.add(new KernelBrush(new float[25][25]));
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
   
   //draw modes (cannot be selected at the same time)
@@ -148,15 +148,15 @@ void keyPressed() {
   int oldSize = brushes.get(0).getSize();
   if(keyCode == UP) {
     if(oldSize <= 50) {
-      brushes.set(0, (new Brush(new float[oldSize + 5][oldSize + 5])));
+      brushes.set(0, (new KernelBrush(new float[oldSize + 5][oldSize + 5])));
     }
   }
   if(keyCode == DOWN) {
     if(oldSize > 5) {
-      brushes.set(0, (new Brush(new float[oldSize - 5][oldSize - 5])));
+      brushes.set(0, (new KernelBrush(new float[oldSize - 5][oldSize - 5])));
     }
     else {
-      brushes.set(0, (new Brush(new float[1][1])));
+      brushes.set(0, (new KernelBrush(new float[1][1])));
     }
   }
   //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
