@@ -39,19 +39,19 @@ void setup(){
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
   
   //draw modes (cannot be selected at the same time)
-  buttons.add(Pencil = new Button(295, 15, 25, 155, "Pencil", 15, 5));
-  buttons.add(Eraser = new Button(295, 45, 25, 155, "Eraser", 15, 5));
-  buttons.add(Fill = new Button(295, 75, 25, 155, "Fill", 15, 5));
-  buttons.add(Picker = new Button(295, 105, 25, 155, "Picker", 15, 5));
+  buttons.add(Pencil = new DrawMode(295, 15, 25, 155, "Pencil", 15, 5));
+  buttons.add(Eraser = new DrawMode(295, 45, 25, 155, "Eraser", 15, 5));
+  buttons.add(Fill = new DrawMode(295, 75, 25, 155, "Fill", 15, 5));
+  buttons.add(Picker = new DrawMode(295, 105, 25, 155, "Picker", 15, 5));
   //popups
-  buttons.add(Import = new Button(15, 15, 120, 100,"Import", 25, 20));
-  buttons.add(Brushes = new Button(150, 15, 120, 120, "Brushes", 25, 20));
-  buttons.add(BrushSize = new Button(475, 15, 120, 120, "Size & Tips", 20, 20));
-  buttons.add(ColorChooser = new Color (645, 15, 120, 80,"Color", 20, 10));
+  buttons.add(Import = new Popup(15, 15, 120, 100,"Import", 25, 20));
+  buttons.add(Brushes = new Popup(150, 15, 120, 120, "Brushes", 25, 20));
+  buttons.add(BrushSize = new Popup(475, 15, 120, 120, "Size", 20, 20));
+  buttons.add(ColorChooser = new ColorSelect(645, 15, 120, 80,"Color", 20, 10, c));
   //single actions
-  buttons.add(Undo = new Button (830, 15, 50, 50, "Undo", 15, 10));
-  buttons.add(Redo = new Button (890, 15, 50, 50, "Redo", 15, 10));
-  buttons.add(Save = new Button (950, 15, 100, 100, "Save", 20, 10));
+  buttons.add(Undo = new SingleAction (830, 15, 50, 50, "Undo", 15, 10));
+  buttons.add(Redo = new SingleAction (890, 15, 50, 50, "Redo", 15, 10));
+  buttons.add(Save = new SingleAction (950, 15, 100, 100, "Save", 20, 10));
   
   //lines for organization's sake
   line(132,0,132,150);

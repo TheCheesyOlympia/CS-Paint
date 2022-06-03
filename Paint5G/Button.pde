@@ -1,21 +1,14 @@
 public class Button {
-  int x, y, h, w, x2, y2, fontSize, c;
   String name;
   boolean isClickable = false;
   boolean isPressed = false;
-  
-  public Button(int setX, int setY, int setH, int setW, 
-  String t, int s, int corner) {
-    x = setX;
-    y = setY;
-    h = setH;
-    w = setW;
-    x2 = x + w;
-    y2 = y + h;
-    name = t;
-    fontSize = s;
-    c = corner;
-  }
+  int x = 15;
+  int y = 15;
+  int w = 15;
+  int h = 15;
+  int f = 10;
+  int x2 = 30;
+  int y2 = 30;
   
   void drawButton(int r, int g, int b) {
     smooth();
@@ -23,8 +16,8 @@ public class Button {
     stroke(0);
     rect(x, y, w, h, c);
     fill(0);
-    textSize(fontSize);
-    text(name, x + w / 2 - (textWidth(name) / 2), y + (h / 2));
+    textSize(10);
+    text(name, x + w / 2 - (textWidth(name) / 2), y + h - 5);
   }
   
   void updateButton() {   
