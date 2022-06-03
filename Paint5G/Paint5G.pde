@@ -56,6 +56,7 @@ void setup(){
   //lines for organization's sake
   line(132,0,132,150);
   line(620,0,620,150);
+  line(0, 149, width, 149); 
 }
 
 void draw() {
