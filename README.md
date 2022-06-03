@@ -36,3 +36,6 @@ Main Timeline (Additional Features):
 -------------
 
 ### 6/3: Features implemented:
+- divided button into subclasses color, popup, draw, and action, with each being modified in the future with their own attributes
+
+### 6/4: Features implemented:
