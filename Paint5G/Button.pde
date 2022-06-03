@@ -1,4 +1,4 @@
-class Button {
+public class Button {
   int x, y, h, w, x2, y2, fontSize, c;
   String name;
   boolean isClickable = false;
@@ -24,7 +24,7 @@ class Button {
     rect(x, y, w, h, c);
     fill(0);
     textSize(fontSize);
-    text(name, x + w / 2 - (textWidth(name) / 2), y + h - 5);
+    text(name, x + w / 2 - (textWidth(name) / 2), y + (h / 2));
   }
   
   void updateButton() {   

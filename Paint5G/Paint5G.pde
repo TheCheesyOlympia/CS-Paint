@@ -13,7 +13,7 @@ ArrayList<Button> buttons;
 
 //Buttons (NOTE TO SELF: ALL BUTTONS SHOULD HAVE THEIR
 //OWN SUBCLASSES OF BUTTON FOR EASIER IMPLEMENTATION)
-Button Open;
+Button Import;
 Button Brushes;
 Button Pencil;
 Button Eraser;
@@ -44,10 +44,10 @@ void setup(){
   buttons.add(Fill = new Button(295, 75, 25, 155, "Fill", 15, 5));
   buttons.add(Picker = new Button(295, 105, 25, 155, "Picker", 15, 5));
   //popups
-  buttons.add(Open = new Button(15, 15, 120, 100,"Open", 25, 20));
+  buttons.add(Import = new Button(15, 15, 120, 100,"Import", 25, 20));
   buttons.add(Brushes = new Button(150, 15, 120, 120, "Brushes", 25, 20));
   buttons.add(BrushSize = new Button(475, 15, 120, 120, "Size & Tips", 20, 20));
-  buttons.add(ColorChooser = new Button (645, 15, 120, 80,"Color", 20, 10));
+  buttons.add(ColorChooser = new Color (645, 15, 120, 80,"Color", 20, 10));
   //single actions
   buttons.add(Undo = new Button (830, 15, 50, 50, "Undo", 15, 10));
   buttons.add(Redo = new Button (890, 15, 50, 50, "Redo", 15, 10));
@@ -103,7 +103,7 @@ void draw() {
     currentMode = mode.peek();
     buttons.get(7).reset();
   }
-  if (currentMode.equals("Open")) {
+  if (currentMode.equals("Import")) {
     selectInput("Select a file to process:", "fileSelected");
     //close popup
     mode.pop();
