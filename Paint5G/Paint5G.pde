@@ -6,11 +6,12 @@ PImage save;
 PImage canvas;
 //PImage img;
 ArrayList<KernelBrush> brushes;
-String currentMode = "None";
+String currentMode;
 Stack<String> mode = new Stack<String>();
 color c;
 int paintsize;
 ArrayList<Button> buttons;
+boolean popup = false;
 
 //Buttons (NOTE TO SELF: ALL BUTTONS SHOULD HAVE THEIR
 //OWN SUBCLASSES OF BUTTON FOR EASIER IMPLEMENTATION)
@@ -33,6 +34,7 @@ void setup(){
   save = canvas.copy();
   c = color(0,0,0);
   mode.push("default");
+  currentMode = mode.peek();
   //intialize arrays
   brushes = new ArrayList<KernelBrush>();
   buttons = new ArrayList<Button>();
@@ -49,12 +51,12 @@ void setup(){
   //popups
   buttons.add(Import = new Popup(15, 15, 120, 100,"Import", 25, 20));
   buttons.add(BrushSize = new Popup(475, 15, 120, 120, "Size", 20, 20));
+  buttons.add(Save = new Popup (950, 15, 100, 100, "Save", 20, 10));
   //color
   buttons.add(ColorChooser = new ColorSelect(645, 15, 120, 80,"Color", 20, 10, c));
   //single actions
   buttons.add(Undo = new SingleAction (830, 15, 50, 50, "Undo", 15, 10));
   buttons.add(Redo = new SingleAction (890, 15, 50, 50, "Redo", 15, 10));
-  buttons.add(Save = new SingleAction (950, 15, 100, 100, "Save", 20, 10));
   
   //lines for organization's sake
   line(132,0,132,150);
@@ -68,7 +70,7 @@ void draw() {
   //inputs for mouse
   if (mousePressed == true && mouseY <= 150){
     for(int i = 0; i < buttons.size(); i++) {
-      if(buttons.get(i).isPressed()) {
+      if(buttons.get(i).isPressed() && i < 5) {
         //detoggle brush options if another brush option is selected
         if (mode.peek().equals("d") && i != 0)  {
           buttons.get(0).reset();
@@ -96,26 +98,13 @@ void draw() {
           currentMode = mode.push(buttons.get(i).getMode());
         }
         //overflow protection
-        if(!mode.peek().equals(buttons.get(i).getButton())) {
+        if(!(mode.peek().equals(buttons.get(i).getButton()))) {
           if(buttons.get(i).getMode() != null);
           mode.push(buttons.get(i).getMode());
         }
       }
     }
-  }  
-  //excecute modes that involve popups
-  if (ColorChooser.isPressed()) {
-    Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
-    if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
-    ColorChooser.updateColor(c);
-    //close popup
-    buttons.get(7).reset();
-  }
-  if (Import.isPressed()) {
-    selectInput("Select a file to process:", "fileSelected");
-    //close popup
-    buttons.get(5).reset();
-  }
+  } 
   //update buttons
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
@@ -146,7 +135,24 @@ void mouseDragged() {
 }
 
 void mouseClicked() {
-  
+  //excecute modes that involve popups
+  if (ColorChooser.isPressed()) {
+    Color nc = JColorChooser.showDialog(null, "Choose a color", Color.black);
+    if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+    ColorChooser.updateColor(c);
+    //close popup
+    buttons.get(8).reset();
+  }
+  if (Import.isPressed()) {
+    selectInput("Select a file to process:", "fileSelected");
+    //close popup
+    buttons.get(5).reset();
+  }
+  if (Save.isPressed()) {
+    selectInput("Select a file to process:", "fileSelected");
+    //close popup
+    buttons.get(7).reset();
+  }
 }
 
 void keyPressed() {
