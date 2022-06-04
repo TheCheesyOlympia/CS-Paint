@@ -175,16 +175,14 @@ void keyPressed() {
 }
 
 void inputSelected(File selection) {
-  if (selection != null) {}
-  else {
+  if (selection != null) {
     canvas = loadImage(selection.getAbsolutePath());
   }
 }
 
 void folderSelected(File selection) {
-   if (selection != null) {} 
-   else {
+   if (selection != null) {
     PImage s = canvas;
-    s.save(selection.getAbsolutePath() + "save.png");
+    s.save(selection.getAbsolutePath() + "//save.PNG");
   }
 }
