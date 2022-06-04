@@ -9,6 +9,7 @@ ArrayList<KernelBrush> brushes;
 String currentMode = "None";
 Stack<String> mode = new Stack<String>();
 color c;
+int paintsize;
 ArrayList<Button> buttons;
 
 //Buttons (NOTE TO SELF: ALL BUTTONS SHOULD HAVE THEIR
@@ -103,21 +104,17 @@ void draw() {
     }
   }  
   //excecute modes that involve popups
-  if (currentMode.equals("Color")) {
+  if (ColorChooser.isPressed()) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
     ColorChooser.updateColor(c);
     //close popup
-    mode.pop();
-    currentMode = mode.peek();
     buttons.get(7).reset();
   }
-  if (currentMode.equals("Import")) {
+  if (Import.isPressed()) {
     selectInput("Select a file to process:", "fileSelected");
     //close popup
-    mode.pop();
-    currentMode = mode.peek();
-    buttons.get(4).reset();
+    buttons.get(5).reset();
   }
   //update buttons
   for(int i = 0; i < buttons.size(); i++) {
