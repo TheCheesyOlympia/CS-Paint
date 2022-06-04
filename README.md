@@ -39,3 +39,6 @@ Main Timeline (Additional Features):
 - divided button into subclasses color, popup, draw, and action, with each being modified in the future with their own attributes
 
 ### 6/4: Features implemented:
+- mode selection now only works with drawmode buttons
+- added save functionality, can save drawings as png files
+- color selection works properly without glitching
