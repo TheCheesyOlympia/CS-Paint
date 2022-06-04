@@ -43,6 +43,10 @@ public class Button {
     return name;
   }
   
+  String getMode() {
+    return null;
+  }
+  
   void reset() {
     isPressed = false;
   }

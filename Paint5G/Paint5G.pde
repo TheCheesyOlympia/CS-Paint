@@ -36,6 +36,7 @@ void setup(){
   brushes = new ArrayList<KernelBrush>();
   buttons = new ArrayList<Button>();
   brushes.add(new KernelBrush(new float[25][25]));
+  
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
   
   //draw modes (cannot be selected at the same time)
@@ -145,7 +146,7 @@ void mouseClicked() {
 }
 
 void keyPressed() {
-  //temporary brush size adjustment with keybind (DEMO ONLY)
+  //brush size adjustment with keybind (DEMO ONLY)
   int oldSize = brushes.get(0).getSize();
   if(keyCode == UP) {
     if(oldSize <= 50) {
