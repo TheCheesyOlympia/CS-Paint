@@ -2,7 +2,6 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-PImage save;
 PImage canvas;
 //PImage img;
 ArrayList<KernelBrush> brushes;
@@ -31,7 +30,6 @@ void setup(){
   size(1080,870);
   background(245);
   canvas = loadImage("blankCanvas.png");
-  save = canvas.copy();
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
@@ -99,8 +97,9 @@ void draw() {
         }
         //overflow protection
         if(!(mode.peek().equals(buttons.get(i).getButton()))) {
-          if(buttons.get(i).getMode() != null);
-          mode.push(buttons.get(i).getMode());
+          if(buttons.get(i).getMode() != null){
+            mode.push(buttons.get(i).getMode());
+          }
         }
       }
     }
@@ -113,10 +112,10 @@ void draw() {
   text(currentMode, 10, 10);
 }
 void mousePressed() {
-  if(currentMode.equals("Pencil")) {
+  if(currentMode.equals("d")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  if(currentMode.equals("Eraser")) {
+  if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
@@ -124,10 +123,10 @@ void mousePressed() {
 }
 
 void mouseDragged() {
-  if(currentMode.equals("Pencil")) {
+  if(currentMode.equals("d")) {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
-  if(currentMode.equals("Eraser")) {
+  if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
@@ -135,7 +134,7 @@ void mouseDragged() {
 }
 
 void mouseClicked() {
-  //excecute modes that involve popups
+  //excecute buttons that involve popups
   if (ColorChooser.isPressed()) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.black);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
@@ -149,7 +148,7 @@ void mouseClicked() {
     buttons.get(5).reset();
   }
   if (Save.isPressed()) {
-    selectInput("Select a file to process:", "fileSelected");
+    selectFolder("Select a folder to process:", "folderSelected");
     //close popup
     buttons.get(7).reset();
   }
@@ -175,9 +174,17 @@ void keyPressed() {
   //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
 }
 
-void fileSelected(File selection) {
-  if (selection != null) {
-    save = canvas.copy();
+void inputSelected(File selection) {
+  if (selection != null) {}
+  else {
     canvas = loadImage(selection.getAbsolutePath());
+  }
+}
+
+void folderSelected(File selection) {
+   if (selection != null) {} 
+   else {
+    PImage s = canvas;
+    s.save(selection.getAbsolutePath() + "save.png");
   }
 }

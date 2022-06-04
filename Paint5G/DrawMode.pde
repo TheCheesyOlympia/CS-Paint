@@ -41,6 +41,6 @@ class DrawMode extends Button {
   }
   
   String getMode() {
-    return null;
+    return m;
   }
 }
