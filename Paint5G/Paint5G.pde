@@ -40,14 +40,15 @@ void setup(){
   //intialize buttons (setX, setY, setH, setW, text, font size, corner radius)
   
   //draw modes (cannot be selected at the same time)
-  buttons.add(Pencil = new DrawMode(295, 15, 25, 155, "Pencil", 15, 5));
-  buttons.add(Eraser = new DrawMode(295, 45, 25, 155, "Eraser", 15, 5));
-  buttons.add(Fill = new DrawMode(295, 75, 25, 155, "Fill", 15, 5));
-  buttons.add(Picker = new DrawMode(295, 105, 25, 155, "Picker", 15, 5));
+  buttons.add(Pencil = new DrawMode(295, 15, 25, 155, "Pencil", 15, 5, "d"));
+  buttons.add(Eraser = new DrawMode(295, 45, 25, 155, "Eraser", 15, 5, "e"));
+  buttons.add(Fill = new DrawMode(295, 75, 25, 155, "Fill", 15, 5, "f"));
+  buttons.add(Picker = new DrawMode(295, 105, 25, 155, "Picker", 15, 5, "p"));
+  buttons.add(Brushes = new DrawMode(150, 15, 120, 120, "Brushes", 25, 20, "b"));
   //popups
   buttons.add(Import = new Popup(15, 15, 120, 100,"Import", 25, 20));
-  buttons.add(Brushes = new Popup(150, 15, 120, 120, "Brushes", 25, 20));
   buttons.add(BrushSize = new Popup(475, 15, 120, 120, "Size", 20, 20));
+  //color
   buttons.add(ColorChooser = new ColorSelect(645, 15, 120, 80,"Color", 20, 10, c));
   //single actions
   buttons.add(Undo = new SingleAction (830, 15, 50, 50, "Undo", 15, 10));
@@ -68,29 +69,35 @@ void draw() {
     for(int i = 0; i < buttons.size(); i++) {
       if(buttons.get(i).isPressed()) {
         //detoggle brush options if another brush option is selected
-        if (mode.peek().equals("Pencil") && i < 4 && i != 0)  {
+        if (mode.peek().equals("d") && i != 0)  {
           buttons.get(0).reset();
           mode.pop();
-          currentMode = mode.push(buttons.get(i).getButton());
+          currentMode = mode.push(buttons.get(i).getMode());
         } 
-        if (mode.peek().equals("Eraser") && i < 4 && i != 1) {
+        if (mode.peek().equals("e") && i != 1) {
           buttons.get(1).reset();
           mode.pop();
-          currentMode = mode.push(buttons.get(i).getButton());
+          currentMode = mode.push(buttons.get(i).getMode());
         } 
-        if (mode.peek().equals("Fill") && i < 4 && i != 2) {
+        if (mode.peek().equals("f") && i != 2) {
           buttons.get(2).reset();
           mode.pop();
-          currentMode = mode.push(buttons.get(i).getButton());
+          currentMode = mode.push(buttons.get(i).getMode());
         } 
-        if (mode.peek().equals("Picker") && i < 3) {
+        if (mode.peek().equals("p") && i != 3) {
           buttons.get(3).reset();
           mode.pop();
-          currentMode = mode.push(buttons.get(i).getButton());
+          currentMode = mode.push(buttons.get(i).getMode());
+        }
+        if (mode.peek().equals("b") && i != 4) {
+          buttons.get(4).reset();
+          mode.pop();
+          currentMode = mode.push(buttons.get(i).getMode());
         }
         //overflow protection
         if(!mode.peek().equals(buttons.get(i).getButton())) {
-          mode.push(buttons.get(i).getButton());
+          if(buttons.get(i).getMode() != null);
+          mode.push(buttons.get(i).getMode());
         }
       }
     }
