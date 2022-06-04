@@ -1,8 +1,5 @@
 public class ColorSelect extends Button {
   int x, y, h, w, x2, y2, fontSize, c, Color;
-  String name;
-  boolean isClickable = false;
-  boolean isPressed = false;
   color bc;
   
   public ColorSelect(int setX, int setY, int setH, int setW, 
@@ -19,7 +16,7 @@ public class ColorSelect extends Button {
     bc = Color;
   }
   
-  void drawButton(color bc) {
+  void drawButton() {
     smooth();
     fill(bc);
     stroke(0);
@@ -30,8 +27,8 @@ public class ColorSelect extends Button {
   }
   
   color getContrastColor(color c) {
-    double y = (299 * c.getRed() + 587 * c.getGreen() + 114 * c.getBlue()) / 1000;
-    return (int)y;
+    float y = (255 - red(bc) + 255 - green(bc) + 255 - blue(bc)) / 3;
+    return (color)y;
   }
   
   void updateButton() {   
@@ -43,6 +40,12 @@ public class ColorSelect extends Button {
       if (mousePressed) {isPressed = !isPressed;} 
     }
     else {isClickable = false;}
-    {drawButton(bc);}
+    if(isPressed) {drawButton(); return;}
+    if(isClickable) {drawButton(); return;}
+    {drawButton();}
+  }
+  
+  void updateColor(color newColor) {
+    bc = newColor;
   }
 }

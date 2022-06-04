@@ -20,7 +20,7 @@ Button Eraser;
 Button Fill;
 Button Picker;
 Button BrushSize;
-Button ColorChooser;
+ColorSelect ColorChooser;
 Button Save;
 Button Undo;
 Button Redo;
@@ -98,6 +98,7 @@ void draw() {
   if (currentMode.equals("Color")) {
     Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
     if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
+    ColorChooser.updateColor(c);
     //close popup
     mode.pop();
     currentMode = mode.peek();
