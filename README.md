@@ -44,4 +44,4 @@ Main Timeline (Additional Features):
 - color selection works properly without glitching
 
 ### 6/5: Features implemented:
-- attempted to add sketch (pgraphics constructor class), got stuck for 2 hours, gave up
+- attempted to add sketch (pgraphics constructor class), got stuck for several hours, gave up
