@@ -28,7 +28,6 @@ Button Redo;
 void setup(){
   size(1080,870);
   background(245);
-  //canvas = loadImage("blankCanvas.png");
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
@@ -107,28 +106,28 @@ void draw() {
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
-  image(canvas,0,150);
+  image(canvas.pg,0,150);
   text(currentMode, 10, 10);
 }
 void mousePressed() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, white);
   }
 }
 
 void mouseDragged() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, white);
   }
 }
 
@@ -175,13 +174,14 @@ void keyPressed() {
 
 void inputSelected(File selection) {
   if (selection != null) {
-    canvas = loadImage(selection.getAbsolutePath());
+    PImage temp = loadImage(selection.getAbsolutePath());
+    canvas.addImage(temp);
   }
 }
 
 void folderSelected(File selection) {
    if (selection != null) {
-    PImage s = canvas;
+    PImage s = canvas.pg;
     s.save(selection.getAbsolutePath() + "//save.PNG");
   }
 }
