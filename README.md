@@ -42,3 +42,6 @@ Main Timeline (Additional Features):
 - mode selection now only works with drawmode buttons
 - added save functionality, can save drawings as png files
 - color selection works properly without glitching
+
+### 6/5: Features implemented:
+- attempted to add sketch (pgraphics constructor class), got stuck for 2 hours, gave up

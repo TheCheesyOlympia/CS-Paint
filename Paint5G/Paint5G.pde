@@ -27,6 +27,7 @@ Button Redo;
 
 void setup(){
   size(1080,870);
+  canvas = new Sketch(1080, 720, 255);
   background(245);
   c = color(0,0,0);
   mode.push("default");
@@ -111,23 +112,21 @@ void draw() {
 }
 void mousePressed() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
-    //eraser sets to white for now, proper erase function at a later date
-    color white = color(255,255,255);
-    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, white);
+    color white = color(255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
 
 void mouseDragged() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
-    //eraser sets to white for now, proper erase function at a later date
-    color white = color(255,255,255);
-    brushes.get(0).apply(canvas.pg, mouseX, mouseY - 150, white);
+    color white = color(255);
+    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
 
