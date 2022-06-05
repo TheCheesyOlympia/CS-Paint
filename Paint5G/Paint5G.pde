@@ -2,8 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-PImage canvas;
-//PImage img;
+Sketch canvas;
 ArrayList<KernelBrush> brushes;
 String currentMode;
 Stack<String> mode = new Stack<String>();
@@ -29,7 +28,7 @@ Button Redo;
 void setup(){
   size(1080,870);
   background(245);
-  canvas = loadImage("blankCanvas.png");
+  //canvas = loadImage("blankCanvas.png");
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
