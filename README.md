@@ -45,3 +45,8 @@ Main Timeline (Additional Features):
 
 ### 6/5: Features implemented:
 - attempted to add sketch (pgraphics constructor class), got stuck for several hours, gave up
+
+### 6/6: Features implemented:
+- started on new Pimage brush function
+
+###
