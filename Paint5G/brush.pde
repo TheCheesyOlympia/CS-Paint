@@ -9,4 +9,12 @@ class brush {
     y1 = startY;
     c = setC;
   }
+  void paint(Sketch s) {
+    s.pg.beginDraw();
+    s.pg.pushStyle();
+    
+    s.pg.popStyle();
+    s.pg.endDraw();
+  }
+  
 }
