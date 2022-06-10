@@ -49,5 +49,8 @@ Main Timeline (Additional Features):
 ### 6/6: Features implemented:
 - started on new Pimage brush function
 
-### 6-7 - 6/9
+### 6/7 - 6/9
 - sick with COVID, no progress attempted
+
+### 6/10
+- rolled back progress to 6/4 (could not figure out how to do PGraphics), will try to implement as much as I can in the remaining time;

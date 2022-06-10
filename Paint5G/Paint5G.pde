@@ -2,7 +2,8 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-Sketch canvas;
+PImage canvas;
+//PImage img;
 ArrayList<KernelBrush> brushes;
 String currentMode;
 Stack<String> mode = new Stack<String>();
@@ -29,6 +30,10 @@ void setup(){
   size(1080,870);
   canvas = new Sketch(1080, 720, 255);
   background(245);
+<<<<<<< HEAD
+=======
+  canvas = loadImage("blankCanvas.png");
+>>>>>>> parent of 443da07 (beginning the process of switching to PGraphics, sketch class added)
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
