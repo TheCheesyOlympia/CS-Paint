@@ -54,3 +54,5 @@ Main Timeline (Additional Features):
 
 ### 6/10
 - rolled back progress to 6/4 (could not figure out how to do PGraphics), will try to implement as much as I can in the remaining time;
+- started on new fill class, which will use the flood method to add fill commands
+- Canvas rewritten with a deque system, which will allow for the implementation of undo and redo

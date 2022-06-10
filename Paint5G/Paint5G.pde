@@ -2,7 +2,6 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-PImage canvas;
 String currentMode;
 Stack<String> mode = new Stack<String>();
 color c;
@@ -31,8 +30,8 @@ void setup(){
   size(1080,870);
   background(245);
   canvas = new ArrayDeque<PImage>();
-  
-  loadImage("blankCanvas.png");
+  PImage bg = loadImage("blankCanvas.png");
+  canvas.addFirst(bg);
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
@@ -111,28 +110,28 @@ void draw() {
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
-  image(canvas,0,150);
+  image(canvas.peek(),0,150);
   text(currentMode, 10, 10);
 }
 void mousePressed() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, white);
   }
 }
 
 void mouseDragged() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, white);
   }
 }
 
@@ -146,7 +145,7 @@ void mouseClicked() {
     buttons.get(8).reset();
   }
   if (Import.isPressed()) {
-    selectInput("Select a file to process:", "fileSelected");
+    selectInput("Select a file to process:", "inputSelected");
     //close popup
     buttons.get(5).reset();
   }
@@ -179,13 +178,15 @@ void keyPressed() {
 
 void inputSelected(File selection) {
   if (selection != null) {
-    canvas = loadImage(selection.getAbsolutePath());
+    PImage temp = canvas.peek();
+    temp = loadImage(selection.getAbsolutePath());
+    canvas.addFirst(temp);
   }
 }
 
 void folderSelected(File selection) {
    if (selection != null) {
-    PImage s = canvas;
+    PImage s = canvas.peek();
     s.save(selection.getAbsolutePath() + "//Paint5G.PNG");
   }
 }
