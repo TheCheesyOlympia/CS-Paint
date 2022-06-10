@@ -3,14 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 
 PImage canvas;
-//PImage img;
-ArrayList<KernelBrush> brushes;
 String currentMode;
 Stack<String> mode = new Stack<String>();
 color c;
 int paintsize;
+//Arrays
+ArrayList<KernelBrush> brushes;
 ArrayList<Button> buttons;
-boolean popup = false;
+ArrayDeque<PImage> canvas;
+ArrayDeque<PImage> redo;
 
 //Buttons (NOTE TO SELF: ALL BUTTONS SHOULD HAVE THEIR
 //OWN SUBCLASSES OF BUTTON FOR EASIER IMPLEMENTATION)
@@ -29,7 +30,9 @@ Button Redo;
 void setup(){
   size(1080,870);
   background(245);
-  canvas = loadImage("blankCanvas.png");
+  canvas = new ArrayDeque<PImage>();
+  
+  loadImage("blankCanvas.png");
   c = color(0,0,0);
   mode.push("default");
   currentMode = mode.peek();
@@ -183,6 +186,6 @@ void inputSelected(File selection) {
 void folderSelected(File selection) {
    if (selection != null) {
     PImage s = canvas;
-    s.save(selection.getAbsolutePath() + "//save.PNG");
+    s.save(selection.getAbsolutePath() + "//Paint5G.PNG");
   }
 }
