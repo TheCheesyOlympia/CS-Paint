@@ -10,14 +10,14 @@ class fill {
     c = setC;
     size = brushSize;
   }
-  void paint(Sketch s) {
-    s.pg.beginDraw();
-    s.pg.pushStyle();
-    s.pg.stroke(c);
-    s.pg.strokeWeight(size);
-    s.pg.line(x,y,x1,y1);
-    s.pg.popStyle();
-    s.pg.endDraw();
+  void paint(PGraphics s) {
+    s.beginDraw();
+    s.pushStyle();
+    s.stroke(c);
+    s.strokeWeight(size);
+    s.line(x,y,x1,y1);
+    s.popStyle();
+    s.endDraw();
   }
   
   void setColor(color newC) {

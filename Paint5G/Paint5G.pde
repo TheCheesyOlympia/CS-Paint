@@ -28,7 +28,6 @@ Button Redo;
 
 void setup(){
   size(1080,870);
-  canvas = new Sketch(1080, 720, 255);
   background(245);
   canvas = loadImage("blankCanvas.png");
   c = color(0,0,0);
@@ -109,7 +108,7 @@ void draw() {
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
-  image(canvas.pg,0,150);
+  image(canvas,0,150);
   text(currentMode, 10, 10);
 }
 void mousePressed() {
@@ -117,7 +116,8 @@ void mousePressed() {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
-    color white = color(255);
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
@@ -127,7 +127,8 @@ void mouseDragged() {
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, c);
   }
   if(currentMode.equals("e")) {
-    color white = color(255);
+    //eraser sets to white for now, proper erase function at a later date
+    color white = color(255,255,255);
     brushes.get(0).apply(canvas, mouseX, mouseY - 150, white);
   }
 }
@@ -175,14 +176,13 @@ void keyPressed() {
 
 void inputSelected(File selection) {
   if (selection != null) {
-    PImage temp = loadImage(selection.getAbsolutePath());
-    canvas.addImage(temp);
+    canvas = loadImage(selection.getAbsolutePath());
   }
 }
 
 void folderSelected(File selection) {
    if (selection != null) {
-    PImage s = canvas.pg;
+    PImage s = canvas;
     s.save(selection.getAbsolutePath() + "//save.PNG");
   }
 }
