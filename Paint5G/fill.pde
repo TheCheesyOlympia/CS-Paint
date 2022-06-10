@@ -1,29 +1,19 @@
 class fill {
   color c;
-  int x, y, x1, y1, size;
+  PImage img;
+  int w, h;
+  ArrayDeque<Point> p = new ArrayDeque<Point>();
   
   public fill(int setX, int setY, int startX, int startY, color setC, int brushSize) {
-    x = setX;
-    y = setY;
-    x1 = startX;
-    y1 = startY;
-    c = setC;
-    size = brushSize;
+    
   }
-  void paint(PGraphics s) {
-    s.beginDraw();
-    s.pushStyle();
-    s.stroke(c);
-    s.strokeWeight(size);
-    s.line(x,y,x1,y1);
-    s.popStyle();
-    s.endDraw();
+  //floodfill algorithim
+  void flood() {
+    
   }
-  
   void setColor(color newC) {
     c = newC;
   }
-  
   void setColor(int red, int green, int blue) {
     c = color(red, green, blue);
   }
