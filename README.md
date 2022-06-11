@@ -48,6 +48,7 @@ Main Timeline (Additional Features):
 
 ### 6/6: Features implemented:
 - started on new Pimage brush function
+- presented MVP to class
 
 ### 6/7 - 6/9
 - sick with COVID, no progress attempted
@@ -56,3 +57,9 @@ Main Timeline (Additional Features):
 - rolled back progress to 6/4 (could not figure out how to do PGraphics), will try to implement as much as I can in the remaining time;
 - started on new fill class, which will use the flood method to add fill commands
 - Canvas rewritten with a deque system, which will allow for the implementation of undo and redo
+
+### 6/11
+- added undo and redo functions (doesn't function properly)
+- brushsize button removed, replaced with keybinds, button will be repurposed as save
+- former save button/function renamed to export
+- added picker (doesn't function properly)
