@@ -111,28 +111,35 @@ void draw() {
   for(int i = 0; i < buttons.size(); i++) {
     buttons.get(i).updateButton();
   }
-  image(canvas.peek(),0,150);
+  image(canvas.getFirst(),0,150);
   text(currentMode, 10, 10);
 }
 void mousePressed() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.getFirst(), mouseX, mouseY - 150, c);
+    redo.clear();
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.getFirst(), mouseX, mouseY - 150, white);
+    redo.clear();
+  }
+  if(currentMode.equals("p")) {
+    c = canvas.getFirst().get(mouseX, mouseY - 150);
   }
 }
 
 void mouseDragged() {
   if(currentMode.equals("d")) {
-    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, c);
+    brushes.get(0).apply(canvas.getFirst(), mouseX, mouseY - 150, c);
+    redo.clear();
   }
   if(currentMode.equals("e")) {
     //eraser sets to white for now, proper erase function at a later date
     color white = color(255,255,255);
-    brushes.get(0).apply(canvas.peek(), mouseX, mouseY - 150, white);
+    brushes.get(0).apply(canvas.getFirst(), mouseX, mouseY - 150, white);
+    redo.clear();
   }
 }
 
@@ -150,7 +157,7 @@ void mouseClicked() {
     //close popup
     buttons.get(5).reset();
   }
-  if (Save.isPressed()) {
+  if (Export.isPressed()) {
     selectFolder("Select a folder to process:", "folderSelected");
     //close popup
     buttons.get(7).reset();
@@ -176,9 +183,19 @@ void keyPressed() {
   if(key == 's') {
     PImage save = canvas.peek();
     canvas.addFirst(save);
+    println("saved drawing");
   }
   if(key == 'z') {
-    redo.addFirst(canvas.remove());
+    if(canvas.size() > 1) {
+      redo.addFirst(canvas.remove());
+      println("undid 1 step");
+    }
+  }
+  if(key == 'y') {
+    if(redo.size() > 0) {
+      canvas.addFirst(redo.removeLast());
+      println("redid 1 step");
+    }
   }
   //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
   //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
@@ -186,7 +203,7 @@ void keyPressed() {
 
 void inputSelected(File selection) {
   if (selection != null) {
-    PImage temp = canvas.peek();
+    PImage temp = canvas.getFirst();
     temp = loadImage(selection.getAbsolutePath());
     canvas.addFirst(temp);
   }
@@ -194,7 +211,8 @@ void inputSelected(File selection) {
 
 void folderSelected(File selection) {
    if (selection != null) {
-    PImage s = canvas.peek();
+    PImage s = canvas.getFirst();
     s.save(selection.getAbsolutePath() + "//Paint5G.PNG");
+    println("image exported sucessfully");
   }
 }
