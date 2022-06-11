@@ -63,3 +63,5 @@ Main Timeline (Additional Features):
 - brushsize button removed, replaced with keybinds, button will be repurposed as save
 - former save button/function renamed to export
 - added picker (doesn't function properly)
+
+### 6/12
