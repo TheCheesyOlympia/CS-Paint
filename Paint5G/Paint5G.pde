@@ -20,9 +20,9 @@ Button Pencil;
 Button Eraser;
 Button Fill;
 Button Picker;
-Button BrushSize;
-ColorSelect ColorChooser;
 Button Save;
+ColorSelect ColorChooser;
+Button Export;
 Button Undo;
 Button Redo;
 
@@ -30,6 +30,7 @@ void setup(){
   size(1080,870);
   background(245);
   canvas = new ArrayDeque<PImage>();
+  redo = new ArrayDeque<PImage>();
   PImage bg = loadImage("blankCanvas.png");
   canvas.addFirst(bg);
   c = color(0,0,0);
@@ -50,8 +51,8 @@ void setup(){
   buttons.add(Brushes = new DrawMode(150, 15, 120, 120, "Brushes", 25, 20, "b"));
   //popups
   buttons.add(Import = new Popup(15, 15, 120, 100,"Import", 25, 20));
-  buttons.add(BrushSize = new Popup(475, 15, 120, 120, "Size", 20, 20));
-  buttons.add(Save = new Popup (950, 15, 100, 100, "Save", 20, 10));
+  buttons.add(Save = new Popup(475, 15, 120, 120, "Save", 20, 20));
+  buttons.add(Export = new Popup (950, 15, 100, 100, "Export", 20, 10));
   //color
   buttons.add(ColorChooser = new ColorSelect(645, 15, 120, 80,"Color", 20, 10, c));
   //single actions
@@ -171,6 +172,13 @@ void keyPressed() {
     else {
       brushes.set(0, (new KernelBrush(new float[1][1])));
     }
+  }
+  if(key == 's') {
+    PImage save = canvas.peek();
+    canvas.addFirst(save);
+  }
+  if(key == 'z') {
+    redo.addFirst(canvas.remove());
   }
   //Color nc = JColorChooser.showDialog(null, "Choose a color", Color.RED);
   //if (nc != null) c = color(nc.getRed(), nc.getGreen(), nc.getBlue(), nc.getAlpha());
