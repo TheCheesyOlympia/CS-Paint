@@ -162,6 +162,27 @@ void mouseClicked() {
     //close popup
     buttons.get(7).reset();
   }
+  //execute actions
+  if (Save.isPressed()) {
+    PImage save = canvas.peek();
+    canvas.addFirst(save);
+    println("saved drawing");
+    buttons.get(6).reset();
+  }
+  if (Undo.isPressed()) {
+    if(canvas.size() > 1) {
+      redo.addFirst(canvas.remove());
+      println("undid 1 step");
+      buttons.get(9).reset();
+    }
+  }
+  if (Redo.isPressed()) {
+    if(redo.size() > 0) {
+      canvas.addFirst(redo.removeLast());
+      println("redid 1 step");
+      buttons.get(10).reset();
+    }
+  }
 }
 
 void keyPressed() {
