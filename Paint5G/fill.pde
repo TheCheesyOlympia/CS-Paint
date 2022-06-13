@@ -16,8 +16,13 @@ class fill {
   }
   //floodfill algorithim
   void flood(int startX, int startY, int newColor, PImage img) {
-    
+     img.loadPixels();
+     pixels = img.pixels;
+     w = img.width;
+     h = img.height;
+     
   }
+  
   void setColor(color newC) {
     c = newC;
   }
