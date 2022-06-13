@@ -3,11 +3,11 @@ class fill {
   PImage img;
   int x1, y1, l, r, h, w;
   ArrayDeque<Point> points;
-  int[] pixels;
+  int[] pixel;
   
   public fill() {
     points = new ArrayDeque<Point>();
-    pixels = new int[100];
+    pixel = new int[100];
     x1 = 0;
     y1 = 0;
     l = 0;
@@ -19,17 +19,21 @@ class fill {
   //floodfill algorithim
   void flood(int startX, int startY, int imgColor, PImage img) {
      img.loadPixels();
-     pixels = img.pixels;
+     pixel = img.pixels;
      x1 = startX;
      y1 = startY;
      w = img.width;
      h = img.height;
      c = imgColor;
-     if(!isValid(startX, startY, pixels, w, h, c)) return;
+     if(!isValid(startX, startY, pixel, w, h, c)) return;
      Point point = new Point(x1, y1);
      points.add(point);
      while(points.size() > 0) {
        point = points.removeFirst();
+       if (isValid(point.x, point.y, pixel, w, h, c)) {
+         l = r; 
+         r = x1;
+       }
      }
   }
   
