@@ -17,7 +17,7 @@ class fill {
     c = color(0);
   }
   //floodfill algorithim
-  void flood(int startX, int startY, int imgColor, PImage img) {
+  PImage flood(int startX, int startY, int imgColor, PImage img) {
      img.loadPixels();
      pixel = img.pixels;
      x1 = startX;
@@ -26,8 +26,8 @@ class fill {
      h = img.height;
      c = imgColor;
      int oldC = pixel[x1 + y1 * w];
-     if(!isValid(startX, startY, pixel, w, h, c)) return;
-     if(oldC == c) return;
+     if(!isValid(startX, startY, pixel, w, h, c)) return img;
+     if(oldC == c) return img;
      Point point = new Point(x1, y1);
      points.add(point);
      while(points.size() > 0) {
@@ -37,13 +37,21 @@ class fill {
          r = x1;
          while(isValid(w--, point.y, pixel, w, h, oldC)) {
            while(isValid(r++, point.y, pixel, w, h, oldC)) {
-             for(int x = l + 1; x < r; x++) {
-               pixel[x + point.y * w] = c;
+             for(int xP = l + 1; x < r; x++) {
+               pixel[xP + point.y * w] = c;
+               if(isValid(xP, point.y - 1, pixel, w, h, oldC)) {
+                 points.add(new Point(xP, point.y - 1));
+               }
+               if(isValid(xP, point.y + 1, pixel, w, h, oldC)) {
+                 points.add(new Point(xP, point.y + 1));
+               }
              }
            }
          } 
        }
      }
+     img.updatePixels();
+     return img;
   }
   
   boolean isValid(int x, int y, int[] pxl, int wid, int hei, int c) {
