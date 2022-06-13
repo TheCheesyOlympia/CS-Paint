@@ -8,19 +8,25 @@ class fill {
   public fill() {
     p = new ArrayDeque<Point>();
     pixels = new int[100];
-    x = 0;
-    y = 0;
+    l = 0;
+    r = 0;
     h = 0;
     w = 0;
     c = color(0);
   }
   //floodfill algorithim
-  void flood(int startX, int startY, int newColor, PImage img) {
+  void flood(int startX, int startY, int imgColor, PImage img) {
+     if(!isValid(startX, startY, img)) return;
      img.loadPixels();
      pixels = img.pixels;
      w = img.width;
      h = img.height;
+     c = pixels[startX + startY * w];
      
+  }
+  
+  boolean isValid(int x, int y, PImage image) {
+    return(x >= 0 && y >= 0 && x < image.width && y < image.height);
   }
   
   void setColor(color newC) {
