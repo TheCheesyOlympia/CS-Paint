@@ -112,7 +112,7 @@ void draw() {
     buttons.get(i).updateButton();
   }
   image(canvas.getFirst(),0,150);
-  text(currentMode, 10, 10);
+  text("Use + and - to adjust brush size", 750, 135);
 }
 void mousePressed() {
   if(currentMode.equals("d")) {
@@ -172,7 +172,7 @@ void mouseClicked() {
   }
   if (Undo.isPressed()) {
     if(canvas.size() > 1) {
-      redo.addFirst(canvas.remove());
+      redo.addFirst(canvas.removeFirst());
       println("undid 1 step");
       buttons.get(9).reset();
     }
@@ -189,12 +189,12 @@ void mouseClicked() {
 void keyPressed() {
   //brush size adjustment with keybind (DEMO ONLY)
   int oldSize = brushes.get(0).getSize();
-  if(keyCode == UP) {
+  if(key == '+') {
     if(oldSize <= 50) {
       brushes.set(0, (new KernelBrush(new float[oldSize + 5][oldSize + 5])));
     }
   }
-  if(keyCode == DOWN) {
+  if(key == '-') {
     if(oldSize > 5) {
       brushes.set(0, (new KernelBrush(new float[oldSize - 5][oldSize - 5])));
     }
@@ -209,7 +209,7 @@ void keyPressed() {
   }
   if(key == 'z') {
     if(canvas.size() > 1) {
-      redo.addFirst(canvas.remove());
+      redo.addFirst(canvas.removeFirst());
       println("undid 1 step");
     }
   }
