@@ -5,9 +5,9 @@ class fill {
   ArrayDeque<Point> p;
   int[] pixels;
   
-  public fill(PImage img) {
+  public fill() {
     p = new ArrayDeque<Point>();
-    pixels = img.pixels;
+    pixels = new int[100];
     x = 0;
     y = 0;
     h = 0;
