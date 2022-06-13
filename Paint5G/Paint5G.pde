@@ -126,7 +126,8 @@ void mousePressed() {
     redo.clear();
   }
   if(currentMode.equals("p")) {
-    c = canvas.getFirst().get(mouseX, mouseY - 150);
+    color temp = canvas.getFirst().get(mouseX, mouseY - 150);
+    c = temp;
   }
 }
 
