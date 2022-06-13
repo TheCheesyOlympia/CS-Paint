@@ -1,14 +1,21 @@
 class fill {
   color c;
   PImage img;
-  int w, h;
-  ArrayDeque<Point> p = new ArrayDeque<Point>();
+  int x, y, h, w;
+  ArrayDeque<Point> p;
+  int[] pixels;
   
-  public fill(int setX, int setY, int startX, int startY, color setC, int brushSize) {
-    
+  public fill(PImage img) {
+    p = new ArrayDeque<Point>();
+    pixels = img.pixels;
+    x = 0;
+    y = 0;
+    h = 0;
+    w = 0;
+    c = color(0);
   }
   //floodfill algorithim
-  void flood() {
+  void flood(int startX, int startY, int newColor, PImage img) {
     
   }
   void setColor(color newC) {
