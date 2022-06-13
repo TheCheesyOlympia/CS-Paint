@@ -65,3 +65,4 @@ Main Timeline (Additional Features):
 - added picker (doesn't function properly)
 
 ### 6/12
+- completed fill, not functional though
