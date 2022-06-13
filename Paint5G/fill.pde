@@ -33,6 +33,13 @@ class fill {
        if (isValid(point.x, point.y, pixel, w, h, c)) {
          l = r; 
          r = x1;
+         while(isValid(w--, point.y, pixel, w, h, c) {
+           while(isValid(r++, point.y, pixel, w, h, c) {
+             for(int x = l + 1; x < r; x++) {
+               
+             }
+           }
+         } 
        }
      }
   }
