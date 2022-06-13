@@ -25,18 +25,20 @@ class fill {
      w = img.width;
      h = img.height;
      c = imgColor;
+     int oldC = pixel[x1 + y1 * w];
      if(!isValid(startX, startY, pixel, w, h, c)) return;
+     if(oldC == c) return;
      Point point = new Point(x1, y1);
      points.add(point);
      while(points.size() > 0) {
        point = points.removeFirst();
-       if (isValid(point.x, point.y, pixel, w, h, c)) {
+       if (isValid(point.x, point.y, pixel, w, h, oldC)) {
          l = r; 
          r = x1;
-         while(isValid(w--, point.y, pixel, w, h, c) {
-           while(isValid(r++, point.y, pixel, w, h, c) {
+         while(isValid(w--, point.y, pixel, w, h, oldC)) {
+           while(isValid(r++, point.y, pixel, w, h, oldC)) {
              for(int x = l + 1; x < r; x++) {
-               
+               pixel[x + point.y * w] = c;
              }
            }
          } 
