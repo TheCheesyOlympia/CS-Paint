@@ -17,7 +17,7 @@ class fill {
     c = color(0);
   }
   //floodfill algorithim
-  void flood(int startX, int startY, int imgColor, PImage img) {
+  PImage flood(int startX, int startY, int imgColor, PImage img) {
      img.loadPixels();
      pixel = img.pixels;
      x1 = startX;
@@ -26,8 +26,8 @@ class fill {
      h = img.height;
      c = imgColor;
      int oldC = pixel[x1 + y1 * w];
-     if(!isValid(startX, startY, pixel, w, h, c)) return;
-     if(oldC == c) return;
+     if(!isValid(startX, startY, pixel, w, h, c)) return img;
+     if(oldC == c) return img;
      Point point = new Point(x1, y1);
      points.add(point);
      while(points.size() > 0) {
@@ -52,6 +52,7 @@ class fill {
      }
      img.updatePixels();
      image = img;
+     return image;
   }
   
   boolean isValid(int x, int y, int[] pxl, int wid, int hei, int c) {
@@ -59,10 +60,6 @@ class fill {
       return false;
     }
     return (pxl[x + y * wid] == c);
-  }
-  
-  PImage getResult() {
-    return image;
   }
   
   void setColor(color newC) {

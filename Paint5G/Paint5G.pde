@@ -132,8 +132,7 @@ void mousePressed() {
   if(currentMode.equals("f")) {
     fill bucket = new fill();
     PImage temp = canvas.getFirst();
-    bucket.flood(mouseX, mouseY - 150, c, temp); 
-    PImage result = bucket.getResult();
+    PImage result = bucket.flood(mouseX, mouseY - 150, c, temp); 
     canvas.addFirst(result);
   }
 }
