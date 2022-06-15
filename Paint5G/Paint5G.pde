@@ -129,6 +129,13 @@ void mousePressed() {
     color temp = canvas.getFirst().get(mouseX, mouseY - 150);
     c = temp;
   }
+  if(currentMode.equals("f")) {
+    fill bucket = new fill();
+    PImage temp = canvas.getFirst();
+    bucket.flood(mouseX, mouseY - 150, c, temp); 
+    PImage result = bucket.getResult();
+    canvas.addFirst(result);
+  }
 }
 
 void mouseDragged() {
