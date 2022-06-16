@@ -66,3 +66,12 @@ Main Timeline (Additional Features):
 
 ### 6/12
 - completed fill, not functional though
+
+### 6/13
+- no progress (studying for test retakes)
+
+### 6/14
+- attempted bugfixing (didn't go too well)
+
+### 6/15 - 6/16
+- updated UML and prototype to finalized version
