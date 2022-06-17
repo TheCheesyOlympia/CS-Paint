@@ -5,6 +5,22 @@ PROTOTYPE LINK (Design Document)
 ===============================
 https://docs.google.com/document/d/13OaHJZIVS8gO-R3T4ZWJIYjAqkdbErOZCEEILbbUY2Q/edit#
 
+RUN INSTRUCTIONS
+===============
+- go to Paint5G.pde and run it from the Processing terminal.
+- Press the buttons at the top for actions (not fill, picker, or brush: those are broken)
+- when pencil or eraser is selected, click and drag to draw
+- color changes the color of the brush through a popup
+- import allows you to import an image onto the Canvas
+- export saves the canvas as a png image
+
+### List of keybinds
+- '-' makes the brush smaller
+- '+' makes the brush bigger
+- 's' saves the file
+- 'z' does undo (only works with imported images)
+- 'y' does redo (only works with imported images)
+
 DEVELOPMENT LOG
 ==============
 5/23: Git cloned repo to PC, created Processing file for project
